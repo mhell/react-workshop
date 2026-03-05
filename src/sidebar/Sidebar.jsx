@@ -9,10 +9,10 @@ const navlinks = [
 
 const Sidebar = () => {
   return (
-    <div className="d-flex flex-column flex-shrink-0 p-5 bg-light" style={{height: "100vh"}}>
-
-      <i className="bi bi-columns-gap fs-3"></i>
-        <ul className="mt-5 pt-3 nav vav-pills flex-column mb-auto">
+    <div className="flex-shrink-0 text-bg-light h-100">
+      <div className='fixed-top p-5'>
+        <i className="bi bi-columns-gap fs-3"></i>
+        <ul className="mt-5 pt-3 nav flex-column mb-auto">
           {
             navlinks.map((link) => (
               <li className='nav-item my-2' key={link.name}>
@@ -24,13 +24,14 @@ const Sidebar = () => {
             ))
           }
         </ul>
-        <div>
-          <p>Username</p>
-          <span className="small">
-           <i className="bi bi-box-arrow-in-right me-2"></i>
-            Logout
-          </span>
-        </div>
+      </div>
+      <div className='fixed-bottom p-5'>
+        <p className='username'>Username</p>
+        <span>
+          <i className='bi bi-box-arrow-in-right me-2'></i>
+          Logout
+        </span>
+      </div>
     </div>
   );
 };
