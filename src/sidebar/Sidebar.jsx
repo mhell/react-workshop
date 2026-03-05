@@ -9,7 +9,7 @@ const navlinks = [
 
 const Sidebar = () => {
   return (
-    <div className="flex-shrink-0 text-bg-light h-100">
+    <div className="text-bg-light h-100">
       <div className='fixed-top p-5'>
         <i className="bi bi-columns-gap fs-3"></i>
         <ul className="mt-5 pt-3 nav flex-column mb-auto">
