@@ -6,7 +6,7 @@ import TodoCard from './TodoCard';
 const Tasks = () => (
   <>
     <Header />
-    <div className="container-lg d-flex flex-column justify-content-center">
+    <div className='container-lg d-flex flex-column justify-content-center'>
       <Form />
       <TodoCard />
     </div>

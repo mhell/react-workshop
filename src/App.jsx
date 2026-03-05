@@ -5,7 +5,7 @@ function App() {
   return (
     <>
       <div className='d-flex'>
-        <div id='sidebar' className='flex-shrink-0'>
+        <div id='sidebar-container' className='flex-shrink-0'>
           <Sidebar />
         </div>
         <div className='flex-grow-1'>
