@@ -20,10 +20,10 @@ const Tasks = ({assignees}) => {
       <Header title='Tasks'>
         <Searchbar />
       </Header>
-      <div className='container-lg d-flex flex-column justify-content-center'>
+      <main className='container-lg d-flex flex-column justify-content-center'>
         <Form assignees={assignees} />
         <TaskCard tasks={tasks} assignees={assignees} />
-      </div>
+      </main>
     </>
   );
 };

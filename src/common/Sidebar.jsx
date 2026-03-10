@@ -2,8 +2,8 @@ import React from 'react';
 
 const Sidebar = ({navlinks, username}) => {
   return (
-    <div id="sidebar" className="text-bg-light h-100">
-      <div className='fixed-top p-5'>
+    <aside id="sidebar" className="text-bg-light h-100">
+      <nav className='fixed-top p-5'>
         <i className="bi bi-columns-gap fs-3"></i>
         <ul className="mt-5 pt-3 nav flex-column mb-auto">
           {
@@ -17,7 +17,7 @@ const Sidebar = ({navlinks, username}) => {
             ))
           }
         </ul>
-      </div>
+      </nav>
       <div className='fixed-bottom p-5'>
         <p className='username'>{username}</p>
         <span>
@@ -25,7 +25,7 @@ const Sidebar = ({navlinks, username}) => {
           Logout
         </span>
       </div>
-    </div>
+    </aside>
   );
 };
 
