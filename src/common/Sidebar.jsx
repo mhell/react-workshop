@@ -1,13 +1,6 @@
 import React from 'react';
 
-const navlinks = [
-  { name: "Dashboard", icon: "bi-grid", href: "#" },
-  { name: "Users", icon: "bi-people", href: "#" },
-  { name: "Tasks", icon: "bi-list-check", href: "#" },
-  { name: "Settings", icon: "bi-gear", href: "#" }
-]
-
-const Sidebar = () => {
+const Sidebar = ({navlinks, username}) => {
   return (
     <div id="sidebar" className="text-bg-light h-100">
       <div className='fixed-top p-5'>
@@ -26,7 +19,7 @@ const Sidebar = () => {
         </ul>
       </div>
       <div className='fixed-bottom p-5'>
-        <p className='username'>Username</p>
+        <p className='username'>{username}</p>
         <span>
           <i className='bi bi-box-arrow-in-right me-2'></i>
           Logout
