@@ -12,7 +12,8 @@
   width: 250px;
 }
 
-#sidebar .fixed-top {
+#sidebar .fixed-top, 
+#sidebar .fixed-bottom {
   right: auto;
 }
 
