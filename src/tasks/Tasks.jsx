@@ -7,13 +7,16 @@ import * as todoService from '../service/todoService';
 
 const Tasks = ({assignees}) => {
   const [filterParams, setFilterParams] = useState({});
+  const [reload, setReload] = useState(false);
 
   const visibleTodos = useMemo(() => {
+    console.log(todoService.filter());
     return todoService.filter(filterParams);
-  }, [filterParams]);
+  }, [filterParams, reload]);
 
   function addTodo(todo) {
-
+    todoService.add(todo);
+    setReload(!reload);
   }
 
   function filterTodo(params) {
@@ -34,7 +37,7 @@ const Tasks = ({assignees}) => {
         <Searchbar onSearch={filterTodo} />
       </Header>
       <main className='container-lg d-flex flex-column justify-content-center'>
-        <Form assignees={assignees} onNewTask={addTodo} />
+        <Form assignees={assignees} onAddTodo={addTodo} />
         <TaskCard todos={visibleTodos} assignees={assignees} onFilter={filterTodo} onChange={changeTodo} onDelete={deleteTodo} />
       </main>
     </>

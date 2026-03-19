@@ -41,7 +41,7 @@ const Task = ({title, description, createdDate, assigneeName, dueDate, attachmen
               {attachments &&
                 <span className='badge text-bg-secondary text-white py-1 d-flex align-items-center todoAttachmentsBadge'>
                   <i className='bi bi-paperclip me-1'></i>
-                  <span className='todoAttachements'>{attachments.length} attachments</span>
+                  <span className='todoAttachements'>{attachments.length} attachment{attachments.length > 1 && "s"}</span>
                 </span>
               }
             </div>
