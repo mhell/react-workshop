@@ -1,8 +1,14 @@
-import React from 'react';
+import { useForm } from "react-hook-form";
 
-const Form = ({assignees}) => {
+const Form = ({assignees, onNewTask}) => {
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    
+  }
+
   return (
-    <form id='todoForm' className='rounded border shadow-sm m-4 p-3'>
+    <form id='todoForm' className='rounded border shadow-sm m-4 p-3' onSubmit={handleSubmit}>
       <div className='mb-3'>
         <label htmlFor='titleInput' className='form-label'>Title</label>
         <input type='text' name='title' className='form-control' id='titleInput' required />

@@ -1,7 +1,6 @@
-import React from "react";
-import TaskItem from "./TaskItem";
+import Task from "./Task";
 
-const TaskCard = ({tasks, assignees}) => {
+const TaskCard = ({todos, assignees}) => {
   return (
     <div className="card border shadow-sm mx-4 mt-0 mb-5" id="todoHolder">
       <div className="card-header bg-white d-flex justify-content-between align-items-center p-3">
@@ -18,16 +17,16 @@ const TaskCard = ({tasks, assignees}) => {
 
       <ul id="todoList" className="list-group m-3">
         {
-          tasks.map((task) => (
-            <li key={task.id} id={task.id} className='list-group-item todoListItem'>
-              <TaskItem 
-                title={task.title}
-                description={task.description}
-                createdDate={task.createdDate}
-                assigneeName={task.assignee ? assignees.find((a) => a.id === task.assignee).name : null}
-                attachments={task.attachments}
-                dueDate={task.dueDate}
-                completed={task.completed}
+          todos.map((todo) => (
+            <li key={todo.id} id={'todoItem-'+todo.id} className='list-group-item todoListItem'>
+              <Task 
+                title={todo.title}
+                description={todo.description}
+                createdDate={todo.createdDate}
+                assigneeName={todo.assignee ? assignees.find((a) => a.id === todo.assignee).name : null}
+                attachments={todo.attachments}
+                dueDate={todo.dueDate}
+                completed={todo.completed}
               />
             </li>
           ))

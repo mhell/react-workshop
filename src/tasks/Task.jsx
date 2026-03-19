@@ -1,6 +1,5 @@
-import React from 'react';
 
-const TaskItem = ({title, description, createdDate, assigneeName, dueDate, attachments, completed}) => {
+const Task = ({title, description, createdDate, assigneeName, dueDate, attachments, completed}) => {
   return (
     <div className='container-lg px-0'>
       <div className='row'>
@@ -53,4 +52,4 @@ const TaskItem = ({title, description, createdDate, assigneeName, dueDate, attac
   );
 };
 
-export default TaskItem;
+export default Task;

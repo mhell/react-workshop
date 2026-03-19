@@ -1,32 +1,24 @@
 import Sidebar from './common/Sidebar.jsx'
 import Tasks from './tasks/Tasks.jsx'
-import User from './model/User.js'
 import { useState } from 'react';
+import * as userService from './service/userService.js'
 
-const pages = [
+const PAGES = [
   { name: "Dashboard", icon: "bi-grid", href: "#" },
   { name: "Users", icon: "bi-people", href: "#" },
   { name: "Tasks", icon: "bi-list-check", href: "#" },
   { name: "Settings", icon: "bi-gear", href: "#" }
 ];
 
-const usersInit = [
-  new User('Mattias Hellman'),
-  new User('Sindhuja Parthasarathy'),
-  new User('Iffat Zabin'),
-  new User('Zackaria Azzoug'),
-  new User('Alexander Haitin')
-];
-
 function App() {
-  const [users, setUsers] = useState(usersInit);
-  const [loggedIn, setLoggedIn] = useState(users[0].name);
+  const [users, setUsers] = useState(userService.getAll());
+  const [loggedIn, setLoggedIn] = useState(userService.getLoggedIn());
 
   return (
     <>
       <div className='d-flex'>
         <div id='sidebar-container' className='flex-shrink-0'>
-          <Sidebar navlinks={pages} username={loggedIn}/>
+          <Sidebar navlinks={PAGES} username={loggedIn.name}/>
         </div>
         <div className='flex-grow-1'>
           <Tasks assignees={users} />
