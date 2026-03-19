@@ -2,29 +2,36 @@ import { useForm } from "react-hook-form";
 
 const Form = ({assignees, onNewTask}) => {
 
-  function handleSubmit(event) {
-    event.preventDefault();
+  const { register, handleSubmit, formState: { errors } } = useForm();
+
+  function onSubmit(data) {
     
   }
 
   return (
-    <form id='todoForm' className='rounded border shadow-sm m-4 p-3' onSubmit={handleSubmit}>
+    <form id='todoForm' className='rounded border shadow-sm m-4 p-3' onSubmit={handleSubmit(onSubmit)}>
       <div className='mb-3'>
         <label htmlFor='titleInput' className='form-label'>Title</label>
-        <input type='text' name='title' className='form-control' id='titleInput' required />
+        <input type='text' className='form-control' id='titleInput' 
+        {...register("title", {required: "Title is required", maxLength: {value: 100, message: "Title needs to be less than 100 characters"}})} />
+        <div className="invalid-feedback d-block">{errors.title?.message}</div>
       </div>
       <div className='mb-3'>
         <label htmlFor='descriptionInput' className='form-label'>Description</label>
-        <textarea name='description' className='form-control' id='descriptionInput' rows='3'></textarea>
+        <textarea className='form-control' id='descriptionInput' rows='3' 
+        {...register("description", {required: "Description is required", maxLength: {value: 100, message: "Description needs to be less than 500 characters"}})}></textarea>
+        <div className="invalid-feedback d-block">{errors.description?.message}</div>
       </div>
       <div className='row'>
         <div className='col-sm mb-3'>
           <label htmlFor='dateInput' className='form-label'>Due Date</label>
-          <input type='datetime-local' name='dueDate' id='dateInput' className='form-control' required />
+          <input type='datetime-local' id='dateInput' className='form-control' 
+          {...register("dueDate", {required: "A due date needs to be set", min: {value: new Date().toISOString().substring(0, 16), message: 'Due date cannot be set in the past'}})} />
+          <div className="invalid-feedback d-block">{errors.dueDate?.message}</div>
         </div>
         <div className='col-sm mb-3'>
           <label htmlFor='assignIput' className='form-label'>Assign to Person (Optional)</label>
-          <select id='assignIput' className='form-select' name='assignee' aria-label='Default select example'>
+          <select id='assignIput' className='form-select' aria-label='Default select example' {...register("assignee", { required: true, min : {value: 1, message: "An assignee is required" }})}>
             <option value='0'>-- Select Person (Optional) --</option>
             {
               assignees.map((assignee) => (
@@ -32,12 +39,13 @@ const Form = ({assignees, onNewTask}) => {
               ))
             }
           </select>
+          <div className="invalid-feedback d-block">{errors.assignee?.message}</div>
         </div>
       </div>
       <div className='mb-3'>
         <label htmlFor='attachmentInput' className='form-label'>Attachments</label>
         <div className='input-group'>
-          <input id='attachmentInput' className='form-control attachments' type='file' multiple name='attachments' />
+          <input id='attachmentInput' className='form-control attachments' type='file' multiple {...register("attachments")} />
           <button className='btn btn-outline-secondary clearAttachments' type='button' >
             <i className='bi bi-x-lg'></i>
           </button>
