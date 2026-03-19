@@ -12,6 +12,10 @@ export function getAll() {
   return USERS;
 }
 
+export function getbyId(id) {
+  return USERS.find((user) => user.id === id)
+}
+
 export function getLoggedIn() {
   return USERS[0];
 }

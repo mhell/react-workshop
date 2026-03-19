@@ -10,6 +10,20 @@ export function add(todo) {
   todos.push(todo);
 }
 
+export function update(updatedTodo) {
+  todos.map((todo) => {
+    if (todo.id === updatedTodo.id) {
+      return updatedTodo;
+    } else {
+      return todo;
+    }
+  })
+}
+
+export function remove(id) {
+  todos = todos.filter((todo) => todo.id !== id);
+}
+
 export function filter(params = {}) {
   return todos;
 }
