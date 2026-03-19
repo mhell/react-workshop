@@ -1,14 +1,19 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import TodoItem from "../model/TodoItem";
+import {toLocalISOString} from "../utilities/utilities"
 
-const Form = ({assignees, onAddTodo}) => {
-  const { register, reset, resetField, handleSubmit, formState: { errors } } = useForm();
-  const [attachments, setAttachments] = useState([])
+const Form = ({assignees, onSubmit, editTodo}) => {
+  const defaultValues = {
+    ...editTodo,
+    dueDate: editTodo && toLocalISOString(editTodo.dueDate),
+  };
+  const { register, reset, resetField, handleSubmit, formState: { errors } } = useForm({defaultValues: defaultValues});
+  const [attachments, setAttachments] = useState(editTodo?.attachments ?? [])
 
-  function onSubmit(data) {
-    console.log(data.attachments);
-    onAddTodo(new TodoItem(data.title, data.description, new Date(data.dueDate), Number(data.assignee), Array.from(data.attachments)))
+  function onValidSubmit(data) {
+    const newTodoItem = new TodoItem(data.title, data.description, new Date(data.dueDate), Number(data.assignee), attachments);
+    onSubmit(editTodo ? {...newTodoItem, id: editTodo.id} : newTodoItem);
     clearAttachments();
     reset();
   }
@@ -23,7 +28,7 @@ const Form = ({assignees, onAddTodo}) => {
   }
 
   return (
-    <form id='todoForm' className='rounded border shadow-sm m-4 p-3' onSubmit={handleSubmit(onSubmit)}>
+    <form id='todoForm' className='rounded border shadow-sm m-4 p-3' onSubmit={handleSubmit(onValidSubmit)}>
       <div className='mb-3'>
         <label htmlFor='titleInput' className='form-label'>Title</label>
         <input type='text' className='form-control' id='titleInput' 
@@ -76,9 +81,8 @@ const Form = ({assignees, onAddTodo}) => {
           }
         </ul>
       </div>
-      <button type='submit' className='btn btn-primary d-flex align-items-center gap-1 ms-auto'>
-        <i className='bi bi-plus-lg'></i>
-        Add Todo
+      <button type='submit' className='btn btn-primary d-flex align-items-center gap-1 ms-auto' data-bs-dismiss="modal" data-bs-target="#editModal">
+        {editTodo ? "Save Changes" : <><i className='bi bi-plus-lg'></i> Add Todo</>}
       </button>
     </form>
   );
