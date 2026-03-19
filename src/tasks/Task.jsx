@@ -2,6 +2,7 @@ import * as users from "../service/userService";
 import {toLocalISOString} from "../utilities/utilities"
 
 const Task = ({todo, onComplete, onRemove, onEditing}) => {
+
   return (
     <div className='container-lg px-0'>
       <div className='row'>

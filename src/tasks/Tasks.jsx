@@ -53,7 +53,9 @@ const Tasks = ({assignees}) => {
         </TaskCard>
       </main>
       <EditModal>
-          <Form key={editing?.id} assignees={assignees} onSubmit={updateTodo} editTodo={editing} />
+        {
+          editing && <Form assignees={assignees} onSubmit={(todo) => { setEditing(null); updateTodo(todo) }} editTodo={editing} />
+        }
       </EditModal>
     </>
   );

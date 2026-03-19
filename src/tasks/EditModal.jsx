@@ -1,3 +1,4 @@
+import Modal from 'bootstrap/js/dist/modal' 
 
 const EditModal = ({children}) => {
   return (

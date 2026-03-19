@@ -81,9 +81,16 @@ const Form = ({assignees, onSubmit, editTodo}) => {
           }
         </ul>
       </div>
-      <button type='submit' className='btn btn-primary d-flex align-items-center gap-1 ms-auto' data-bs-dismiss="modal" data-bs-target="#editModal">
-        {editTodo ? "Save Changes" : <><i className='bi bi-plus-lg'></i> Add Todo</>}
-      </button>
+      <div className="modal-footer border-0 justify-content-end">
+        {editTodo &&
+          <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
+            Cancel
+          </button>
+        }
+        <button type='submit' className='btn btn-primary d-flex align-items-center gap-1' data-bs-dismiss="modal" data-bs-target="#editModal">
+          {editTodo ? "Save Changes" : <><i className='bi bi-plus-lg'></i> Add Todo</>}
+        </button>
+      </div>
     </form>
   );
 };
