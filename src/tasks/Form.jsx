@@ -50,7 +50,7 @@ const Form = ({assignees, onSubmit, editTodo}) => {
         </div>
         <div className='col-sm mb-3'>
           <label htmlFor='assignIput' className='form-label'>Assign to Person (Optional)</label>
-          <select id='assignIput' className='form-select' aria-label='Default select example' {...register("assignee", { required: true, min : {value: 1, message: "Assignee is required" }})}>
+          <select id='assignIput' className='form-select' aria-label='Default select example' {...register("assignee")}>
             <option value='0'>-- Select Person (Optional) --</option>
             {
               assignees.map((assignee) => (

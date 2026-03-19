@@ -1,8 +1,8 @@
 class User {
-  static identity = 0;
+  static sequencer = 0;
 
   constructor(name) {
-    this.id = ++User.identity;
+    this.id = ++User.sequencer;
     this.name = name;
   }
 }

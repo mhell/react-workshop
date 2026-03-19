@@ -1,8 +1,8 @@
 class TodoItem {
-  static identity = 0;
+  static sequencer = 0;
 
-  constructor(title, description, dueDate, assignee = null, attachments = null) {
-    this.id = ++TodoItem.identity;
+  constructor(title, description, dueDate, assignee = 0, attachments = null) {
+    this.id = ++TodoItem.sequencer;
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
