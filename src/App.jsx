@@ -17,10 +17,10 @@ function App() {
   return (
     <>
       <div className='d-flex'>
-        <div id='sidebar-container' className='flex-shrink-0'>
+        <div id='sidebar-container'>
           <Sidebar navlinks={PAGES} username={loggedIn.name}/>
         </div>
-        <div className='flex-grow-1'>
+        <div id='content-container' className='flex-grow-1'>
           <Tasks assignees={users} />
         </div>
       </div>

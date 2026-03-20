@@ -34,11 +34,12 @@ h1 {
 
 #sidebar-container {
   width: 250px;
+  height: 100vh;
 }
 
-#sidebar .fixed-top, 
-#sidebar .fixed-bottom {
-  right: auto;
+#content-container {
+  height: 100vh;
+  overflow: scroll;
 }
 
 #search {
