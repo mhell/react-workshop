@@ -7,6 +7,7 @@ const Form = ({assignees, onSubmit, editTodo}) => {
   const defaultValues = {
     ...editTodo,
     dueDate: editTodo && toLocalISOString(editTodo.dueDate),
+    assignee: editTodo && (editTodo.assignee ?? 0)
   };
   const { register, reset, resetField, handleSubmit, formState: { errors } } = useForm({defaultValues: defaultValues});
   const [attachments, setAttachments] = useState(editTodo?.attachments ?? [])
@@ -50,7 +51,7 @@ const Form = ({assignees, onSubmit, editTodo}) => {
         </div>
         <div className='col-sm mb-3'>
           <label htmlFor='assignIput' className='form-label'>Assign to Person (Optional)</label>
-          <select id='assignIput' className='form-select' aria-label='Default select example' {...register("assignee")}>
+          <select id='assignIput' className='form-select' {...register("assignee")}>
             <option value='0'>-- Select Person (Optional) --</option>
             {
               assignees.map((assignee) => (

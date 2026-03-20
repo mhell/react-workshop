@@ -9,7 +9,7 @@ import * as todoService from '../service/todoService';
 
 const Tasks = ({assignees}) => {
   const [filterParams, setFilterParams] = useState(undefined);
-  const [sortFn, setSortFn] = useState(undefined);
+  const [sortFn, setSortFn] = useState();
   const [editTodo, setEditTodo] = useState(null);
   const [reload, setReload] = useState(false);
 
@@ -55,7 +55,7 @@ const Tasks = ({assignees}) => {
       </main>
       <EditModal>
         {
-          editTodo && <Form assignees={assignees} onSubmit={(todo) => { setEditTodo(null); updateTodo(todo) }} editTodo={editTodo} />
+          editTodo && <Form key={editTodo.id} assignees={assignees} onSubmit={(todo) => { setEditTodo(null); updateTodo(todo) }} editTodo={editTodo} />
         }
       </EditModal>
     </>
