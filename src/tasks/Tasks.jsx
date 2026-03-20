@@ -40,17 +40,21 @@ const Tasks = ({assignees, onMenuOpen}) => {
       </Header>
       <main className='container-lg d-flex flex-column justify-content-center'>
         <Form assignees={assignees} onSubmit={addTodo} />
-        <TaskCard onFilter={setFilterParams} onSort={setSortFn} isFiltered={filterParams} isSorted={sortFn}>
-          {
-            visibleTodos.map((todo) => (
-              <li key={todo.id} id={'todoItem-'+todo.id} className='list-group-item todoListItem'>
-                <Task todo={todo} onComplete={updateTodo} onEditing={setEditTodo} onRemove={removeTodo} />
-              </li>
-            ))
-          }
-        </TaskCard>
+        {
+          visibleTodos.length > 0 && (
+            <TaskCard onFilter={setFilterParams} onSort={setSortFn} isFiltered={filterParams} isSorted={sortFn}>
+            {
+              visibleTodos.map((todo) => (
+                <li key={todo.id} id={'todoItem-'+todo.id} className='list-group-item todoListItem'>
+                  <Task todo={todo} onComplete={updateTodo} onEditing={setEditTodo} onRemove={removeTodo} />
+                </li>
+              ))
+            }
+            </TaskCard>
+          )
+        }
       </main>
-      <EditModal>
+      <EditModal shouldClose={!editTodo}>
         {
           editTodo && <Form key={editTodo.id} assignees={assignees} onSubmit={(todo) => { setEditTodo(null); updateTodo(todo) }} editTodo={editTodo} />
         }

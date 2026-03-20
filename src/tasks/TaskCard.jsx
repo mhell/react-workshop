@@ -1,7 +1,7 @@
 
 const TaskCard = ({children, onFilter, onSort, isFiltered, isSorted}) => {
   return (
-    <div className="card border shadow-sm mx-4 mt-0 mb-5" id="todoHolder">
+    <div className="card border shadow-sm mx-2 mx-md-4 mt-0 mb-5">
       <div className="card-header bg-white d-flex justify-content-between align-items-center p-3">
         <h2 className="h5 mb-0">Todos</h2>
         <div className="btn-group" aria-label="Filter">

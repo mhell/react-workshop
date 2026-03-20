@@ -1,7 +1,7 @@
 // d-flex align-items-center 
 const Header = ({title, children, onMenuOpen}) => {
   return (
-    <header className='container-fluid px-4'>
+    <header className='container-fluid px-3 px-md-4'>
       <div className='row align-items-center px-2 py-2 my-3'> 
         <div className='col-3 col-md-2'>
           <h1 className='h3 m-0'>{title}</h1>

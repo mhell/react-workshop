@@ -50,11 +50,9 @@ h1 {
 
 #sidebar-container {
   width: var(--sidebar-width);
-  height: 100vh;
 }
 
 #content-container {
-  height: 100vh;
   overflow: scroll;
 }
 

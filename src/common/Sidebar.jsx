@@ -1,8 +1,8 @@
 
 const Sidebar = ({navlinks, username}) => {
   return (
-    <aside id="sidebar" className="text-bg-light d-flex align-items-center align-items-lg-start ps-lg-5 py-4 py-lg-5 flex-column h-100">
-      <nav >
+    <aside id="sidebar" className="text-bg-light d-flex ps-5 py-lg-5 flex-column h-100">
+      <nav className="py-4">
         <i className="bi bi-columns-gap fs-3"></i>
         <ul className="mt-5 pt-3 nav flex-column mb-auto">
           {
@@ -17,7 +17,7 @@ const Sidebar = ({navlinks, username}) => {
           }
         </ul>
       </nav>
-      <div className='mt-auto'>
+      <div className='mt-auto py-4'>
         <p className='username'>{username}</p>
         <span>
           <i className='bi bi-box-arrow-in-right me-2'></i>

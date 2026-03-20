@@ -1,8 +1,15 @@
-import Modal from 'bootstrap/js/dist/modal' 
+import {useRef} from 'react';
+import Modal from 'bootstrap/js/dist/modal';
 
-const EditModal = ({children}) => {
+const EditModal = ({children, shouldClose}) => {
+  const modalRef = useRef(null);
+
+  if (shouldClose) {
+    Modal.getInstance(modalRef.current)?.hide();
+  }
+
   return (
-    <div className="modal fade" tabIndex="-1" aria-hidden="true" id="editModal">
+    <div className="modal fade" tabIndex="-1" aria-hidden="true" id="editModal" ref={modalRef}>
       <div className="modal-dialog modal-lg">
         <div className="modal-content">
           <div className="modal-header">

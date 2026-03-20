@@ -18,10 +18,10 @@ function App() {
   return (
     <>
       <div className='d-flex'>
-        <div id='sidebar-container' className={menuOpen ? "menu-open" : ""}>
+        <div id='sidebar-container' className={`vh-100 ${menuOpen ? "menu-open" : ""}`}>
           <Sidebar navlinks={PAGES} username={loggedIn.name}/>
         </div>
-        <div id='content-container' className='flex-grow-1'>
+        <div id='content-container' className='flex-grow-1 vh-100'>
           { menuOpen && <Dimmer onClick={() => menuOpen &&setMenuOpen(false)} /> }
           <Tasks assignees={users} onMenuOpen={() => setMenuOpen(!menuOpen)} />
         </div>
@@ -41,7 +41,7 @@ function Dimmer({onClick}) {
   }, []);
 
   return (
-    <div id="dimmer" className='position-absolute w-100 h-100 bg-dark' onClick={onClick} ref={dimmerRef}></div>
+    <div id="dimmer" className='position-absolute w-100 vh-100 bg-dark' onClick={onClick} ref={dimmerRef}></div>
   )
 }
 
