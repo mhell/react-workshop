@@ -8,14 +8,15 @@ import { useState, useMemo } from 'react';
 import * as todoService from '../service/todoService';
 
 const Tasks = ({assignees}) => {
-  const [filterParams, setFilterParams] = useState(undefined);
+  const [filterParams, setFilterParams] = useState();
   const [sortFn, setSortFn] = useState();
+  const [query, setQuery] = useState();
   const [editTodo, setEditTodo] = useState(null);
   const [reload, setReload] = useState(false);
 
   const visibleTodos = useMemo(() => {
-    return todoService.filter(filterParams).sort(sortFn);
-  }, [filterParams, sortFn, reload]);
+    return todoService.find(filterParams, query).sort(sortFn);
+  }, [filterParams, sortFn, query, reload]);
 
   function addTodo(todo) {
     todoService.add(todo);
@@ -32,14 +33,10 @@ const Tasks = ({assignees}) => {
     setReload(!reload);
   }
 
-  function searchTodo(params) {
-
-  }
-
   return (
     <>
       <Header title='Tasks'>
-        <Searchbar onSearch={searchTodo} />
+        <Searchbar onSearch={setQuery} />
       </Header>
       <main className='container-lg d-flex flex-column justify-content-center'>
         <Form assignees={assignees} onSubmit={addTodo} />
