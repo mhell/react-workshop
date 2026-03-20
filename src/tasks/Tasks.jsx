@@ -8,21 +8,18 @@ import { useState, useMemo } from 'react';
 import * as todoService from '../service/todoService';
 
 const Tasks = ({assignees}) => {
-  const [filterParams, setFilterParams] = useState({});
-  const [editing, setEditing] = useState(null);
+  const [filterParams, setFilterParams] = useState(undefined);
+  const [sortFn, setSortFn] = useState(undefined);
+  const [editTodo, setEditTodo] = useState(null);
   const [reload, setReload] = useState(false);
 
   const visibleTodos = useMemo(() => {
-    return todoService.filter(filterParams);
-  }, [filterParams, reload]);
+    return todoService.filter(filterParams).sort(sortFn);
+  }, [filterParams, sortFn, reload]);
 
   function addTodo(todo) {
     todoService.add(todo);
     setReload(!reload);
-  }
-
-  function filterTodo(params) {
-
   }
 
   function updateTodo(todo) {
@@ -35,18 +32,22 @@ const Tasks = ({assignees}) => {
     setReload(!reload);
   }
 
+  function searchTodo(params) {
+
+  }
+
   return (
     <>
       <Header title='Tasks'>
-        <Searchbar onSearch={filterTodo} />
+        <Searchbar onSearch={searchTodo} />
       </Header>
       <main className='container-lg d-flex flex-column justify-content-center'>
         <Form assignees={assignees} onSubmit={addTodo} />
-        <TaskCard onFilter={filterTodo}>
+        <TaskCard onFilter={setFilterParams} onSort={setSortFn} isFiltered={filterParams} isSorted={sortFn}>
           {
             visibleTodos.map((todo) => (
               <li key={todo.id} id={'todoItem-'+todo.id} className='list-group-item todoListItem'>
-                <Task todo={todo} onComplete={updateTodo} onEditing={setEditing} onRemove={removeTodo} />
+                <Task todo={todo} onComplete={updateTodo} onEditing={setEditTodo} onRemove={removeTodo} />
               </li>
             ))
           }
@@ -54,7 +55,7 @@ const Tasks = ({assignees}) => {
       </main>
       <EditModal>
         {
-          editing && <Form assignees={assignees} onSubmit={(todo) => { setEditing(null); updateTodo(todo) }} editTodo={editing} />
+          editTodo && <Form assignees={assignees} onSubmit={(todo) => { setEditTodo(null); updateTodo(todo) }} editTodo={editTodo} />
         }
       </EditModal>
     </>
