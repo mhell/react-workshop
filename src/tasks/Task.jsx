@@ -19,32 +19,17 @@ const Task = ({ todo, onComplete, onRemove, onEditing }) => {
         </div>
         <div className="col-auto order-2 mb-1 order-sm-3 text-end">
           <div className="btn-group" aria-label="Toggle completed">
-            <button
-              type="button"
-              className={`btn btn-sm btn-outline-success btnCompleted ${
-                todo.completed && "text-bg-success"
-              }`}
+            <button type="button" className={`btn btn-sm btn-outline-success btnCompleted ${todo.completed && "text-bg-success"}`}
               onClick={() => {
                 todo.completed = !todo.completed;
                 onComplete(todo);
-              }}
-            >
+              }}>
               <i className="bi bi-check-lg"></i>
             </button>
-            <button
-              type="button"
-              className="btn btn-sm btn-outline-primary btnEdit"
-              data-bs-toggle="modal"
-              data-bs-target="#editModal"
-              onClick={() => onEditing(todo)}
-            >
+            <button type="button" className="btn btn-sm btn-outline-primary btnEdit" data-bs-toggle="modal" data-bs-target="#editModal" onClick={() => onEditing(todo)}>
               <i className="bi bi-pencil"></i>
             </button>
-            <button
-              type="button"
-              className="btn btn-sm btn-outline-danger btnDelete"
-              onClick={() => onRemove(todo.id)}
-            >
+            <button type="button" className="btn btn-sm btn-outline-danger btnDelete" onClick={() => onRemove(todo.id)}>
               <i className="bi bi-trash"></i>
             </button>
           </div>

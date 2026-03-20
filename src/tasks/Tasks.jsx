@@ -7,7 +7,7 @@ import EditModal from './EditModal';
 import { useState, useMemo } from 'react';
 import * as todoService from '../service/todoService';
 
-const Tasks = ({assignees}) => {
+const Tasks = ({assignees, onMenuOpen}) => {
   const [filterParams, setFilterParams] = useState();
   const [sortFn, setSortFn] = useState();
   const [query, setQuery] = useState();
@@ -35,7 +35,7 @@ const Tasks = ({assignees}) => {
 
   return (
     <>
-      <Header title='Tasks'>
+      <Header title='Tasks' onMenuOpen={onMenuOpen}>
         <Searchbar onSearch={setQuery} />
       </Header>
       <main className='container-lg d-flex flex-column justify-content-center'>
