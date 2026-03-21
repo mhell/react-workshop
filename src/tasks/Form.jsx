@@ -82,9 +82,9 @@ const Form = ({assignees, onSubmit, editTodo}) => {
           }
         </ul>
       </div>
-      <div className="modal-footer border-0 justify-content-end">
+      <div className="d-flex border-0 justify-content-end">
         {editTodo &&
-          <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
+          <button type="button" className="btn btn-secondary me-2" data-bs-dismiss="modal">
             Cancel
           </button>
         }
