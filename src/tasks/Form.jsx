@@ -7,14 +7,14 @@ const Form = ({assignees, onSubmit, editTodo}) => {
   const defaultValues = {
     ...editTodo,
     dueDate: editTodo && toLocalISOString(editTodo.dueDate),
-    assignee: editTodo && (editTodo.assignee ?? 0)
+    assignee: editTodo?.assignee ?? 0
   };
   const { register, reset, resetField, handleSubmit, formState: { errors, isValid } } = useForm({defaultValues: defaultValues});
   const [attachments, setAttachments] = useState(editTodo?.attachments ?? [])
 
   function onValidSubmit(data) {
-    const newTodoItem = new TodoItem(data.title, data.description, new Date(data.dueDate), Number(data.assignee), attachments);
-    onSubmit(editTodo ? {...newTodoItem, id: editTodo.id} : newTodoItem);
+    const dataFormatted = {title: data.title, description: data.description, dueDate: new Date(data.dueDate), assignee: Number(data.assignee) || null, attachments: attachments};
+    onSubmit(editTodo ? Object.assign(editTodo, dataFormatted) : new TodoItem(...Object.values(dataFormatted)));
     clearAttachments();
     reset();
   }
