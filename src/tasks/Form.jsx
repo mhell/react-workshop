@@ -9,7 +9,7 @@ const Form = ({assignees, onSubmit, editTodo}) => {
     dueDate: editTodo && toLocalISOString(editTodo.dueDate),
     assignee: editTodo?.assignee ?? 0
   };
-  const { register, reset, resetField, handleSubmit, formState: { errors, isValid } } = useForm({defaultValues: defaultValues});
+  const { register, reset, resetField, handleSubmit, formState: { errors } } = useForm({defaultValues: defaultValues});
   const [attachments, setAttachments] = useState(editTodo?.attachments ?? [])
 
   function onValidSubmit(data) {
