@@ -23,7 +23,7 @@ const Form = ({assignees, onSubmit, editTodo}) => {
     setAttachments(Array.from(event.target.files));
   }
 
-  function clearAttachments(event) {
+  function clearAttachments() {
     setAttachments([]);
     resetField("attachments");
   }
